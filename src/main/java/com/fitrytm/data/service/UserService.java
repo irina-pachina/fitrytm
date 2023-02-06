@@ -2,6 +2,8 @@ package com.fitrytm.data.service;
 
 import com.fitrytm.data.entity.User;
 import java.util.Optional;
+
+import com.fitrytm.data.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

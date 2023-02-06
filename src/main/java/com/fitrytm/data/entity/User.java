@@ -2,6 +2,8 @@ package com.fitrytm.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fitrytm.data.Role;
+import org.hibernate.annotations.Type;
+
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -11,19 +13,30 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "application_user")
+@Table(name = "users")
 public class User extends AbstractEntity {
 
+    @NotEmpty
     private String username;
-    private String name;
+
+    @NotEmpty
     @JsonIgnore
-    private String hashedPassword;
+    private String password;
+
+    @NotEmpty
+    @Email
+    private String email;
+
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    //@ElementCollection(fetch = FetchType.EAGER)
+    private Role role;
+
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     @Column(length = 1000000)
     private byte[] profilePicture;
 
@@ -33,23 +46,24 @@ public class User extends AbstractEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getEmail() {
+        return email;
     }
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
     public byte[] getProfilePicture() {
         return profilePicture;

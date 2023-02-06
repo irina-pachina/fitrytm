@@ -1,19 +1,27 @@
 package com.fitrytm.data.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "exercises")
 public class Exercise extends AbstractEntity {
 
-    private String category;
-    private String exposureLevel;
     private String name;
     private String description;
 
-    public String getCategory() {
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    private String exposureLevel;
+
+    public Category getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
     public String getExposureLevel() {

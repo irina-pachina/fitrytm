@@ -1,4 +1,4 @@
-package com.fitrytm.data.service;
+package com.fitrytm.data.repository;
 
 import com.fitrytm.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
